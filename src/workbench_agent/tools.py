@@ -4,9 +4,10 @@ from __future__ import annotations
 
 import json
 import sqlite3
+from contextlib import contextmanager
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Callable
+from typing import Any, Callable, Iterator
 
 from jsonschema import Draft202012Validator
 
@@ -75,8 +76,16 @@ class TodoStore:
                 "done INTEGER NOT NULL DEFAULT 0)"
             )
 
-    def _connect(self) -> sqlite3.Connection:
-        return sqlite3.connect(self.database_path)
+    @contextmanager
+    def _connect(self) -> Iterator[sqlite3.Connection]:
+        """提交事务后关闭连接，保证临时数据库可立即清理。"""
+
+        conn = sqlite3.connect(self.database_path)
+        try:
+            with conn:
+                yield conn
+        finally:
+            conn.close()
 
     def add(self, title: str) -> dict[str, Any]:
         title = title.strip()

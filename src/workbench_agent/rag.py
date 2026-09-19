@@ -6,9 +6,10 @@ import math
 import re
 import sqlite3
 from collections import Counter
+from contextlib import contextmanager
 from dataclasses import asdict, dataclass
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any, Iterable, Iterator
 
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -116,8 +117,16 @@ class SQLiteChunkStore:
                 "position INTEGER NOT NULL, text TEXT NOT NULL)"
             )
 
-    def _connect(self) -> sqlite3.Connection:
-        return sqlite3.connect(self.database_path)
+    @contextmanager
+    def _connect(self) -> Iterator[sqlite3.Connection]:
+        """提供事务边界并显式释放句柄，避免 Windows 无法删除临时数据库。"""
+
+        conn = sqlite3.connect(self.database_path)
+        try:
+            with conn:
+                yield conn
+        finally:
+            conn.close()
 
     def replace_source(self, source: str, chunks: Iterable[Chunk]) -> int:
         items = list(chunks)
