@@ -198,7 +198,7 @@ python scripts/evaluate_agent.py
 
 - pytest：17 passed。
 - 20 条检索集：加权 Hybrid Hit@3=1.0、MRR@3=0.9417。
-- 8 条真实 Agent 案例：严格 Tool/回答/引用/效率检查 8/8。
+- 8 条真实 Agent 案例：最新严格回归 7/8；失败项为重复检索导致效率超限，工具集合与答案仍正确。此前运行曾达到 8/8，说明模型存在非确定性。
 - FastAPI `/health`、`/documents/text`、`/chat`：200。
 - Streamlit `/_stcore/health`：200。
 
@@ -228,4 +228,3 @@ python scripts/evaluate_agent.py
 ## 延伸方向
 
 优先增加真实文档评测和 Reranker；数据增长后迁移 Qdrant/pgvector。MCP、LangGraph、Docker可作为后续工程扩展。第一阶段不增加 Multi-Agent、GraphRAG、微调或 Kubernetes。
-

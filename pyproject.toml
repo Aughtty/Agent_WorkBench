@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "personal-workbench-agent"
-version = "0.1.0"
+version = "0.3.0"
 description = "面向个人知识、文件和待办的单 Agent 多工具工作台"
 requires-python = ">=3.11"
 dependencies = [

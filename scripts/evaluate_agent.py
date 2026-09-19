@@ -38,7 +38,7 @@ def main() -> None:
             records.append({
                 "name": case["name"], "passed": ok, "expected": case["expected_tools"],
                 "actual": actual, "tool_ok": tool_ok, "answer_ok": answer_ok, "efficiency_ok": efficiency_ok,
-                "steps": result.steps, "answer": result.answer,
+                "steps": result.steps,
             })
         output = {"passed": passed, "total": len(cases), "success_rate": round(passed / len(cases), 4), "cases": records}
         output_path = ROOT / "docs" / "agent评测结果.json"
