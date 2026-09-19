@@ -1,0 +1,22 @@
+[
+  {"query": "Agent 和普通聊天机器人有什么区别", "source": "agent_basics.md"},
+  {"query": "模型会直接运行 Python 工具吗", "source": "agent_basics.md"},
+  {"query": "为什么工具调用通常要请求模型两次", "source": "agent_basics.md"},
+  {"query": "call_id 的作用是什么", "source": "agent_basics.md"},
+  {"query": "如何避免智能体无限循环", "source": "agent_basics.md"},
+  {"query": "RAG 解决了什么问题", "source": "rag.md"},
+  {"query": "完整的检索增强生成流程", "source": "rag.md"},
+  {"query": "文本块切得太小有什么缺点", "source": "rag.md"},
+  {"query": "Top-K 是否越大越好", "source": "rag.md"},
+  {"query": "关键词检索和向量检索如何选择", "source": "rag.md"},
+  {"query": "短期记忆和长期记忆的区别", "source": "memory.md"},
+  {"query": "数据库是否等于 Memory 策略", "source": "memory.md"},
+  {"query": "为什么不能发送全部历史对话", "source": "memory.md"},
+  {"query": "如何控制上下文长度", "source": "memory.md"},
+  {"query": "怎样避免不同用户记忆串线", "source": "memory.md"},
+  {"query": "哪些模型错误值得重试", "source": "engineering.md"},
+  {"query": "Agent Trace 应记录哪些字段", "source": "engineering.md"},
+  {"query": "单元测试为什么不直接调用付费模型", "source": "engineering.md"},
+  {"query": "FastAPI 在这个项目中负责什么", "source": "engineering.md"},
+  {"query": "上传文档需要做哪些安全校验", "source": "engineering.md"}
+]

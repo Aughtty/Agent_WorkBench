@@ -1,0 +1,127 @@
+{
+  "passed": 8,
+  "total": 8,
+  "success_rate": 1.0,
+  "cases": [
+    {
+      "name": "知识检索",
+      "passed": true,
+      "expected": [
+        "search_knowledge"
+      ],
+      "actual": [
+        "search_knowledge"
+      ],
+      "tool_ok": true,
+      "answer_ok": true,
+      "efficiency_ok": true,
+      "steps": 2,
+      "answer": "RAG（Retrieval-Augmented Generation，检索增强生成）是一种结合外部知识检索与大模型生成的技术。其核心流程是：先从外部知识库检索与问题相关的内容，再将检索到的上下文作为补充信息交给大模型，由模型生成最终回答。\n\nRAG 主要解决以下问题：\n1. 模型参数知识过时\n2. 私有知识缺失\n3. 答案难以追溯\n\n典型流程包括：文档解析、文本清洗、Chunk 切分、Embedding 向量化、写入 Vector Store、查询向量化、Top-K 检索、上下文拼接、模型生成和来源引用。\n\n来源：[knowledge/rag.md#chunk-0]、[rag.md#chunk-0]"
+    },
+    {
+      "name": "新增待办",
+      "passed": true,
+      "expected": [
+        "add_todo"
+      ],
+      "actual": [
+        "add_todo"
+      ],
+      "tool_ok": true,
+      "answer_ok": true,
+      "efficiency_ok": true,
+      "steps": 2,
+      "answer": "已为您新增待办事项：复习 Agent 主循环（ID: 1）。"
+    },
+    {
+      "name": "列出待办",
+      "passed": true,
+      "expected": [
+        "list_todos"
+      ],
+      "actual": [
+        "list_todos"
+      ],
+      "tool_ok": true,
+      "answer_ok": true,
+      "efficiency_ok": true,
+      "steps": 2,
+      "answer": "你当前有 1 条未完成的待办事项：\n\n1. **复习 Agent 主循环** (ID: 1)"
+    },
+    {
+      "name": "文件查找",
+      "passed": true,
+      "expected": [
+        "find_files"
+      ],
+      "actual": [
+        "find_files"
+      ],
+      "tool_ok": true,
+      "answer_ok": true,
+      "efficiency_ok": true,
+      "steps": 2,
+      "answer": "在工作目录中未找到名称包含 README 的文件。"
+    },
+    {
+      "name": "检索后记录",
+      "passed": true,
+      "expected": [
+        "search_knowledge",
+        "add_todo"
+      ],
+      "actual": [
+        "search_knowledge",
+        "add_todo"
+      ],
+      "tool_ok": true,
+      "answer_ok": true,
+      "efficiency_ok": true,
+      "steps": 3,
+      "answer": "知识库中关于 Memory 的内容如下：\n\n**Agent Memory** 是让系统利用历史信息的机制 [memory.md#chunk-0]：\n*   **短期记忆**：通常保存当前会话最近的对话消息 [memory.md#chunk-0][knowledge/agent-memory.md#chunk-0]。\n*   **长期记忆**：可能保存跨会话的用户偏好、事实或历史任务 [memory.md#chunk-0][knowledge/agent-memory.md#chunk-0]。\n*   **存储与策略**：数据库只是存储实现，不等于设计好 Memory 策略 [memory.md#chunk-0]。由于上下文窗口有限，不能无限发送全部历史，常见策略包括消息窗口、Token 预算、历史摘要和相关记忆检索 [memory.md#chunk-0]。\n*   **隔离**：多用户或多会话系统必须使用 session_id 或 user_id 隔离记忆，避免消息泄露 [memory.md#chunk-0]。\n\n已新增待办事项：“复习 Memory”（ID: 2）。"
+    },
+    {
+      "name": "检索后记录RAG",
+      "passed": true,
+      "expected": [
+        "search_knowledge",
+        "add_todo"
+      ],
+      "actual": [
+        "search_knowledge",
+        "add_todo"
+      ],
+      "tool_ok": true,
+      "answer_ok": true,
+      "efficiency_ok": true,
+      "steps": 3,
+      "answer": "根据知识库中的信息，Top-K 不能越大越好的原因主要有以下几点：\n\n1.  **引入噪声**：Top-K 过大时，检索结果中会混入更多与当前问题无关的“噪声”信息 [rag.md#chunk-0]。\n2.  **消耗 Token 与成本**：检索到的文档内容会作为上下文发送给大模型，Top-K 越大，上下文越长，消耗的 Token 数量越多，导致生成成本增加 [rag.md#chunk-0]。\n3.  **干扰模型判断**：过多的无关或低相关性上下文可能会干扰大模型的推理和判断，反而降低生成答案的质量 [rag.md#chunk-0]。\n4.  **增加延时**：处理更长的上下文会增加模型的推理时间，导致响应延时变高 [rag.md#chunk-0]。\n\n因此，Top-K 的选择需要平衡召回率（Hit@K）和噪声干扰，通常通过固定问题集评估回答质量、延时和成本来确定最佳值，而不是盲目调大 [rag.md#chunk-0]。\n\n已为您记录待办事项：“调整 Top-K”（ID: 3）。"
+    },
+    {
+      "name": "只回答常识",
+      "passed": true,
+      "expected": [],
+      "actual": [],
+      "tool_ok": true,
+      "answer_ok": true,
+      "efficiency_ok": true,
+      "steps": 1,
+      "answer": "我是你的个人信息工作台 Agent，旨在通过检索个人知识库、管理待办事项和查找文件，为你提供高效、个性化的信息整理与任务协助服务。"
+    },
+    {
+      "name": "多知识问题",
+      "passed": true,
+      "expected": [
+        "search_knowledge"
+      ],
+      "actual": [
+        "search_knowledge"
+      ],
+      "tool_ok": true,
+      "answer_ok": true,
+      "efficiency_ok": true,
+      "steps": 2,
+      "answer": "根据知识库资料，**Agent** 与 **Workflow** 的主要区别如下：\n\n### 1. 核心定义与运作模式\n*   **Workflow（工作流）**：\n    *   属于**固定**的执行流程。\n    *   步骤主要由**开发者预先定义** [agent_basics.md#chunk-0]。\n    *   系统按照既定的逻辑顺序执行，灵活性较低。\n\n*   **Agent（智能体）**：\n    *   属于**动态**的决策系统。\n    *   能够围绕用户目标，**选择行动、观察结果并继续决策** [agent_basics.md#chunk-0]。\n    *   让模型在受控的工具集合内**动态选择下一步**，而非遵循固定路径 [agent_basics.md#chunk-0]。\n\n### 2. 决策机制\n*   **Workflow**：执行路径是静态的，开发者需要预设所有可能的分支和步骤。\n*   **Agent**：模型根据当前状态和工具反馈（Observation）实时决定下一步行动，具有更强的自主性和适应性 [agent_basics.md#chunk-0]。\n\n### 3. 资源与风险控制\n*   **Agent** 需要特别设置**停止条件**（如最大步骤数），因为模型可能会重复调用同一工具，导致死循环、延时增加和 Token 成本失控 [agent_basics.md#chunk-0]。\n*   **Workflow** 由于步骤固定，通常不存在此类动态循环风险，但可能缺乏处理突发或未知情况的能力。\n\n### 总结\n| 特性 | Workflow | Agent |\n| :--- | :--- | :--- |\n| **流程定义** | 开发者预先定义，固定步骤 [agent_basics.md#chunk-0] | 模型动态选择，围绕目标决策 [agent_basics.md#chunk-0] |\n| **灵活性** | 低，适合标准化任务 | 高，适合复杂、非结构化任务 |\n| **执行方式** | 顺序执行预设路径 | 循环执行：选择行动 -> 观察结果 -> 继续决策 [agent_basics.md#chunk-0] |\n| **风险控制** | 步骤固定，不易死循环 | 需设置停止条件防止死循环和成本失控 [agent_basics.md#chunk-0] |\n\n**资料来源：**\n*   [agent_basics.md#chunk-0]"
+    }
+  ]
+}

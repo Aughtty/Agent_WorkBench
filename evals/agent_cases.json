@@ -1,0 +1,10 @@
+[
+  {"name": "知识检索", "prompt": "请从知识库回答 RAG 是什么并给出来源", "expected_tools": ["search_knowledge"]},
+  {"name": "新增待办", "prompt": "帮我新增一个待办：复习 Agent 主循环", "expected_tools": ["add_todo"]},
+  {"name": "列出待办", "prompt": "列出我当前没有完成的待办", "expected_tools": ["list_todos"]},
+  {"name": "文件查找", "prompt": "帮我在工作目录查找名称包含 README 的文件", "expected_tools": ["find_files"]},
+  {"name": "检索后记录", "prompt": "先查知识库中的 Memory，再新增待办：复习 Memory", "expected_tools": ["search_knowledge", "add_todo"]},
+  {"name": "检索后记录RAG", "prompt": "查一下 Top-K 为什么不能越大越好，并记录待办：调整 Top-K", "expected_tools": ["search_knowledge", "add_todo"]},
+  {"name": "只回答常识", "prompt": "请用一句话介绍你自己，不需要使用任何工具", "expected_tools": []},
+  {"name": "多知识问题", "prompt": "根据知识库比较 Agent 与 Workflow，并附上资料来源", "expected_tools": ["search_knowledge"]}
+]
