@@ -8,6 +8,8 @@
 
 完整学习路线见 [`docs/15天项目教学手册.md`](docs/15天项目教学手册.md)。手册按每天 1–3 小时设计，从一次请求的完整链路开始，逐步讲解 LLM API、Tool Calling、Agent 循环、RAG、Embedding、混合检索、Memory、FastAPI、测试与评测，并在每一天绑定源码阅读、动手验证和面试官追问。
 
+独立面试复习手册见 [`docs/Agent_Interview_Knowledge.md`](docs/Agent_Interview_Knowledge.md)。它按 P0～P3 排列 Agent/LLM 应用实习八股，包含不同问法、分层回答、追问树、项目专项题、场景与系统设计，以及 15/10/7 天冲刺方案。
+
 建议按 Day 1 → Day 15 顺序学习。每天结束后，把手册末尾的“每日学习回报模板”发给教学助手，即可在同一份进度表中持续记录掌握情况和下一步复习重点。
 
 ## 已实现功能
